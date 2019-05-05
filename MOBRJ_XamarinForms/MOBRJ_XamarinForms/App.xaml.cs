@@ -1,31 +1,48 @@
-﻿using System;
+﻿using MOBRJ_XamarinForms.ViewModels;
+using MOBRJ_XamarinForms.Views;
+using Prism;
+using Prism.DryIoc;
+using Prism.Ioc;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MOBRJ_XamarinForms
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
         public App()
+            : this(null)
+        {
+
+        }
+
+        public App(IPlatformInitializer initializer)
+            : this(initializer, true)
+        {
+
+        }
+
+        public App(IPlatformInitializer initializer, bool setFormsDependencyResolver)
+            : base(initializer, setFormsDependencyResolver)
+        {
+
+        }
+
+
+        protected override async void OnInitialized()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            await NavigationService.NavigateAsync("/NavigationPage/ListaSimplesPage");
         }
 
-        protected override void OnStart()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Handle when your app starts
-        }
+            containerRegistry.RegisterForNavigation<NavigationPage>();
 
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
+            containerRegistry.RegisterForNavigation<ListaSimplesPage, ListaSimplesViewModel>();
+            containerRegistry.RegisterForNavigation<ListaAgrupadaPage, ListaAgrupadaViewModel>();
+            containerRegistry.RegisterForNavigation<ListaDadosLocalPage, ListaDadosLocalViewModel>();
         }
     }
 }
