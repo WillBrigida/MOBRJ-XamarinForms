@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Realms;
 
 namespace MOBRJ_XamarinForms.Models
 {
-    public class Attachment
+    public class Attachment : RealmObject
     {
         public string Id { get; set; }
         public string Url { get; set; }

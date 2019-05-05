@@ -1,13 +1,11 @@
-﻿using MOBRJ_XamarinForms.Models;
+﻿using MOBRJ_XamarinForms.Helpers;
+using MOBRJ_XamarinForms.Models;
 using MOBRJ_XamarinForms.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MOBRJ_XamarinForms.ViewModels
@@ -38,14 +36,7 @@ namespace MOBRJ_XamarinForms.ViewModels
 
         }
 
-        private bool _carregando;
-
-        public bool Carregando
-        {
-            get { return _carregando; }
-            set {SetProperty(ref _carregando ,value); }
-        }
-
+        DataBaseHelper _dataBaseHelper;
         ApiService _apiService;
         private Estados _estados;
 
@@ -73,7 +64,7 @@ namespace MOBRJ_XamarinForms.ViewModels
             ListaEstados = new ObservableCollection<Fields>();
             this.Title = "Lista Simples";
 
-            _apiService = new ApiService();
+            _dataBaseHelper = new DataBaseHelper();
             InitApi();
         }
         #endregion
@@ -92,33 +83,23 @@ namespace MOBRJ_XamarinForms.ViewModels
 
         private async Task InitApi()
         {
-            Estados = await _apiService.Get<Estados>("https://api.airtable.com",
-                "/v0/app0RCW0xYP8RT3U9/Estados?api_key=keyhS9s7U3bGKSuml");
+            var estados = await _dataBaseHelper.GetApi(); // chamada à API
 
-            foreach (var item in Estados.Records)
+
+            foreach (var item in estados)
             {
                 foreach (var attachment in item.Fields.Attachments)
                 {
-
                     ListaEstados.Add(new Fields
                     {
                         Capital = item.Fields.Capital,
-                        Attachments = item.Fields.Attachments,
                         Estado = item.Fields.Estado,
                         Regiao = item.Fields.Regiao,
                         Sigla = item.Fields.Sigla,
                         Icon = attachment.Thumbnails.Large.Url
                     });
 
-                    _listaFiltrada.Add((new Fields
-                    {
-                        Capital = item.Fields.Capital,
-                        Attachments = item.Fields.Attachments,
-                        Estado = item.Fields.Estado,
-                        Regiao = item.Fields.Regiao,
-                        Sigla = item.Fields.Sigla,
-                        Icon = attachment.Thumbnails.Large.Url
-                    }));
+                    _listaFiltrada = ListaEstados;
                 }
 
             }

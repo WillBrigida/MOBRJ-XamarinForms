@@ -39,8 +39,8 @@
             </ListView>
             
             <Button
-                Text="Lista Agrupada"
-                Command="{Binding ListaDadosLocalCommand}"/>
+                Text="Lista Dados Local"
+                Command="{Binding ListaDBCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

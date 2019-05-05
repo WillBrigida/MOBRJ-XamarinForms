@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Realms;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MOBRJ_XamarinForms.Models
 {
-    public class Estados
+    public class Estados : RealmObject
     {
-        public List<Record> Records { get; set; }
+        public IList<Record> Records { get; }
     }
 }

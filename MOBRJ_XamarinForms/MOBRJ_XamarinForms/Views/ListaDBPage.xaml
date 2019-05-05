@@ -2,43 +2,39 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="MOBRJ_XamarinForms.Views.ListaDadosLocalPage"
-    Title="{Binding Title}">
-    
+    x:Class="MOBRJ_XamarinForms.Views.ListaDBPage">
     <ContentPage.Content>
         <StackLayout>
 
-            <SearchBar
+            <!--<SearchBar
                 Text="{Binding Filtro, Mode=TwoWay}"
                 Placeholder="Buscar Estado ou Cidadde"
                 SearchCommand="{Binding Filtro, Mode=TwoWay}">
 
-            </SearchBar>
+            </SearchBar>-->
 
             <ListView
                 CachingStrategy="RecycleElement"
                 SeparatorVisibility="Default"
                 HasUnevenRows="True"
                 IsVisible="True"
-                ItemsSource="{Binding ListaLocal}">
+                ItemsSource="{Binding Lista}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
                                 <Label
-                                    Text="{Binding ListaLocal}"/>
-                                <Label
-                                    Text="{Binding Capital}"/>
-                                <Label
-                                    Text="{Binding Sigla}"/>
+                                 Text="{Binding Estado}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
             <Button
-               Text="Carregar do Banco"
-               Command="{Binding CarregaarDoBancoLocalCommand}"/>
+                Command="{Binding CarregarDoBancoLocalCommand}"/>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -33,6 +33,7 @@ namespace MOBRJ_XamarinForms
         protected override async void OnInitialized()
         {
             InitializeComponent();
+            Realms.RealmConfiguration.DefaultConfiguration.SchemaVersion = 4;
             await NavigationService.NavigateAsync("/NavigationPage/ListaSimplesPage");
         }
 
@@ -42,7 +43,7 @@ namespace MOBRJ_XamarinForms
 
             containerRegistry.RegisterForNavigation<ListaSimplesPage, ListaSimplesViewModel>();
             containerRegistry.RegisterForNavigation<ListaAgrupadaPage, ListaAgrupadaViewModel>();
-            containerRegistry.RegisterForNavigation<ListaDadosLocalPage, ListaDadosLocalViewModel>();
+            containerRegistry.RegisterForNavigation<ListaDBPage, ListaDBViewModel>();
         }
     }
 }
