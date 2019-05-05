@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MOBRJ_XamarinForms.Models
 {
-    public class Fields
+    public partial class Fields
     {
         public string Sigla { get; set; }
         public List<Attachment> Attachments { get; set; }

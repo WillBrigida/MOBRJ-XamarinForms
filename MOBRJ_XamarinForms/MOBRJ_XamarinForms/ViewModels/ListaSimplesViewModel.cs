@@ -37,6 +37,15 @@ namespace MOBRJ_XamarinForms.ViewModels
             }
 
         }
+
+        private bool _carregando;
+
+        public bool Carregando
+        {
+            get { return _carregando; }
+            set {SetProperty(ref _carregando ,value); }
+        }
+
         ApiService _apiService;
         private Estados _estados;
 
@@ -65,9 +74,7 @@ namespace MOBRJ_XamarinForms.ViewModels
             this.Title = "Lista Simples";
 
             _apiService = new ApiService();
-
             InitApi();
-
         }
         #endregion
 
@@ -87,6 +94,7 @@ namespace MOBRJ_XamarinForms.ViewModels
         {
             Estados = await _apiService.Get<Estados>("https://api.airtable.com",
                 "/v0/app0RCW0xYP8RT3U9/Estados?api_key=keyhS9s7U3bGKSuml");
+
             foreach (var item in Estados.Records)
             {
                 foreach (var attachment in item.Fields.Attachments)
@@ -114,6 +122,7 @@ namespace MOBRJ_XamarinForms.ViewModels
                 }
 
             }
+
         }
 
         private void Busca()
@@ -129,7 +138,6 @@ namespace MOBRJ_XamarinForms.ViewModels
                       l.Capital.ToString().ToLower().Contains(Filtro.ToLower())));
             }
         }
-
         #endregion
     }
 }

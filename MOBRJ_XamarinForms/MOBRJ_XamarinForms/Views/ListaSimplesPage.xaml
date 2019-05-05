@@ -16,8 +16,12 @@
                 SearchCommand="{Binding Filtro, Mode=TwoWay}">
                 
             </SearchBar>
-            
+            <!--<ActivityIndicator
+                IsRunning="{Binding IsBusy}">--><!--
+                
+            </ActivityIndicator>-->
             <ListView
+                IsRefreshing="{Binding IsBusy}"
                 CachingStrategy="RecycleElement"
                 SeparatorVisibility="Default"
                 HasUnevenRows="True"
