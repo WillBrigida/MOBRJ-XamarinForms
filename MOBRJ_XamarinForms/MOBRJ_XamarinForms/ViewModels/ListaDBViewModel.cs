@@ -76,8 +76,8 @@ namespace MOBRJ_XamarinForms.ViewModels
         {
             if (GetListaLocal().Count != 0)
             {
-                Icon = FontAwesome.Trash;
                 this.Title = "Lista Local";
+                Icon = FontAwesome.Trash;
             }
 
             else
