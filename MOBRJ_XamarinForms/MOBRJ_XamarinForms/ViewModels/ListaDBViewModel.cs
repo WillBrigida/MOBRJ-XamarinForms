@@ -14,6 +14,7 @@ namespace MOBRJ_XamarinForms.ViewModels
     public class ListaDBViewModel : BaseViewModel
     {
         #region Propriedades
+
         DataBaseHelper _dataBaseHelper;
         public ObservableCollection<Fields> Lista { get; set; }
         public ObservableCollection<Record> ListaRecord { get; set; }
@@ -26,9 +27,10 @@ namespace MOBRJ_XamarinForms.ViewModels
             Lista = new ObservableCollection<Fields>();
             ListaRecord = new ObservableCollection<Record>();
             this.Title = "Lista Local";
-
             _dataBaseHelper = new DataBaseHelper();
-            GetListaApi();
+
+            Init();
+
         }
         #endregion
 
@@ -65,20 +67,57 @@ namespace MOBRJ_XamarinForms.ViewModels
         }
 
 
-
-      
-
         private List<Record> GetListaLocal()
         {
             return _dataBaseHelper.GetListaLocalHelper();
         }
 
-      
+        private void Botao()
+        {
+            if (GetListaLocal().Count != 0)
+            {
+                Icon = FontAwesome.Trash;
+                this.Title = "Lista Local";
+            }
+
+            else
+            {
+                this.Title = "Lista Local Vazia";
+                Icon = FontAwesome.FloppyO;
+            }
+
+        }
+
+        private void Init()
+        {
+            GetListaLocal();
+            Botao();
+            GetListaApi();
+            
+        }
+
 
         private async Task OnBancoLocal()
         {
-            _dataBaseHelper.DeletarListaLocalHelper();
-            //_dataBaseHelper.SalvarNoBancoLocalHelper();
+
+            if (GetListaLocal().Count == 0)
+            {
+                var resp1 = await PageDialogService.DisplayAlertAsync("Alerta", "Deseja salvar lista no banco local?", "Sim", "Não");
+                if (resp1 == true)
+                {
+                    _dataBaseHelper.SalvarNoBancoLocalHelper();
+                    Init();
+                    return;
+                }
+            }
+
+            var resp2 = await PageDialogService.DisplayAlertAsync("Alerta", "Deseja Excluir a lista do banco local?", "Sim", "Não");
+            if (resp2 == true)
+            {
+                _dataBaseHelper.DeletarListaLocalHelper();
+                Lista.Clear();
+                Init();
+            }
         }
 
         #endregion

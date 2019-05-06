@@ -110,7 +110,7 @@
                     BackgroundColor="#00468B"
                     WidthRequest="55"
                     HeightRequest="55"
-                    Text="&#xf061;"
+                    Text="{Binding Icon}"
                         Style="{StaticResource buttonS}"/>
 
             </AbsoluteLayout>
