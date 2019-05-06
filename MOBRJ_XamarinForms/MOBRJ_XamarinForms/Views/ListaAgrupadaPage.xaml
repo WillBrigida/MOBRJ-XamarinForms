@@ -6,41 +6,87 @@
     Title="{Binding Title}">
     
     <ContentPage.Content>
-        <StackLayout>
-            <ListView
+        <AbsoluteLayout>
+            <StackLayout>
+                <ListView
                 IsGroupingEnabled="true" 
-                SeparatorVisibility="Default"
+                   SelectionMode="None"
+                SeparatorVisibility="None"
                 HasUnevenRows="True"
                 IsVisible="True"
                 GroupDisplayBinding="{Binding LongName}" 
-                GroupHeaderTemplate="i"
                 GroupShortNameBinding="{Binding ShortName}"
                 ItemsSource="{Binding ListaAgrupada}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout
-                                BackgroundColor="Gray"
-                                Padding="10">
-                                <Label
-                                    Text="{Binding Sigla}"/>
-                                <Label
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    Margin="10"
+                                Padding="20,10">
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+
+                                            <Label
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                    Text="{Binding Sigla}"
+                                    FontAttributes="Bold"
+                                    FontSize="15"/>
+
+                                            <Label
+                                        Grid.Column="0"
+                                        Grid.Row="1"
                                     Text="{Binding Estado}"/>
-                                <Label
+
+                                            <Label
+                                        Grid.Column="0"
+                                        Grid.Row="2"
                                     Text="{Binding Capital}"/>
-                                <Label
+
+                                            <Label
+                                        Grid.Column="0"
+                                        Grid.Row="3"
                                     Text="{Binding Regiao}"/>
-                                <Image
+
+                                            <Image
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="4"
+                                        Grid.ColumnSpan="2"
                                     Source="{Binding Icon}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            
-            <Button
-                Text="Lista Dados Local"
-                Command="{Binding ListaDBCommand}"/>
-        </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+               
+            </StackLayout>
+
+            <AbsoluteLayout
+                    Style="{StaticResource absoluteLayoutS}">
+                <Button
+                    Command="{Binding ListaDBCommand}"
+                    BackgroundColor="#00468B"
+                    WidthRequest="55"
+                    HeightRequest="55"
+                    Text="&#xf061;"
+                        Style="{StaticResource buttonS}"/>
+
+            </AbsoluteLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

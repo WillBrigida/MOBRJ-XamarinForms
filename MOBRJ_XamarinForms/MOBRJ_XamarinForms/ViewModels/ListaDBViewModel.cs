@@ -43,7 +43,7 @@ namespace MOBRJ_XamarinForms.ViewModels
         #region Métodos
         private async Task GetListaApi()
         {
-            //var estado = await _dataBaseHelper.GetApi(); // Chamada à API
+            var estado = await _dataBaseHelper.GetApi(); // Chamada à API
 
             var listaLocal = GetListaLocal();
             foreach (var item in listaLocal)
@@ -62,50 +62,23 @@ namespace MOBRJ_XamarinForms.ViewModels
                 }
             }
 
-
-            //foreach (var item in estado)
-            //{
-            //    foreach (var attachment in item.Fields.Attachments)
-            //    {
-
-            //        Lista.Add(new Fields
-            //        {
-            //            Capital = item.Fields.Capital,
-            //            Estado = item.Fields.Estado,
-            //            Regiao = item.Fields.Regiao,
-            //            Sigla = item.Fields.Sigla,
-            //            Icon = attachment.Thumbnails.Large.Url
-            //        });
-
-
-            //    }
-
-            //}
         }
 
 
 
-        private void SalvarNoBancoLocal()
-        {
-            _dataBaseHelper.SalvarNoBancoLocalHelper();
-        }
+      
 
         private List<Record> GetListaLocal()
         {
             return _dataBaseHelper.GetListaLocalHelper();
         }
 
-        private void DeletarListaLocal()
-        {
-            _dataBaseHelper.DeletarListaLocalHelper();
-        }
+      
 
         private async Task OnBancoLocal()
         {
-            //DeletarListaLocal();
-            //SalvarNoBancoLocal();
-            var resp = GetListaLocal();
-            var cont = resp.Count;
+            _dataBaseHelper.DeletarListaLocalHelper();
+            //_dataBaseHelper.SalvarNoBancoLocalHelper();
         }
 
         #endregion

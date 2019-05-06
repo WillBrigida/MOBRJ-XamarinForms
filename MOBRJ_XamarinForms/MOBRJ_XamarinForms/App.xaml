@@ -6,7 +6,32 @@
     x:Class="MOBRJ_XamarinForms.App">
     
     <Application.Resources>
+        <ResourceDictionary>
 
+            <OnPlatform  
+                x:Key="IconFontFamily" 
+                x:TypeArguments="x:String" 
+                Android="fa-solid-900.ttf#fa-solid-900.ttf" 
+                iOS="fa-solid-900.ttf#fa-solid-900.ttf"/>
+
+            <Style x:Key="buttonS" TargetType="Button">
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="100" />
+                <Setter Property="BackgroundColor" Value="Green" />
+            </Style>
+
+            <Style x:Key="absoluteLayoutS" TargetType="AbsoluteLayout">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="Margin" Value="20" />
+                <Setter Property="AbsoluteLayout.LayoutBounds" Value="1,1,1,1" />
+                <Setter Property="AbsoluteLayout.LayoutFlags" Value="All" />
+            </Style>
+
+
+        </ResourceDictionary>
     </Application.Resources>
     
 </prism:PrismApplication>

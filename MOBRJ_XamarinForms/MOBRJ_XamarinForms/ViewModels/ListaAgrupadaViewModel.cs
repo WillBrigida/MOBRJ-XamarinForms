@@ -49,33 +49,66 @@ namespace MOBRJ_XamarinForms.ViewModels
 
         private async Task InitApi()
         {
-           
-            var estados =  await _dataBaseHelper.GetApi(); // Chamada da API
+
+            var estados = await _dataBaseHelper.GetApi(); // Chamada da API
 
 
             var nordeste = new Regiao() { LongName = "Nordeste", ShortName = "N" };
 
             foreach (var estado in estados.Where(l => l.Fields.Regiao.Contains("Nordeste")).ToList())
             {
-                nordeste.Add(estado.Fields);
+                foreach (var attachment in estado.Fields.Attachments)
+                {
+                    nordeste.Add(new Fields
+                    {
+                        Capital = estado.Fields.Capital,
+                        Estado = estado.Fields.Estado,
+                        Regiao = estado.Fields.Regiao,
+                        Sigla = estado.Fields.Sigla,
+                        Icon = attachment.Thumbnails.Large.Url
+                    });
+
+                }
             }
             ListaAgrupada.Add(nordeste);
 
 
-            var sudeste = new Regiao() { LongName = "Sudeste", ShortName = "S"};
+            var sudeste = new Regiao() { LongName = "Sudeste", ShortName = "S" };
 
             foreach (var estado in estados.Where(l => l.Fields.Regiao.Contains("Sudeste")).ToList())
             {
-                sudeste.Add(estado.Fields);
+                foreach (var attachment in estado.Fields.Attachments)
+                {
+                    sudeste.Add(new Fields
+                    {
+                        Capital = estado.Fields.Capital,
+                        Estado = estado.Fields.Estado,
+                        Regiao = estado.Fields.Regiao,
+                        Sigla = estado.Fields.Sigla,
+                        Icon = attachment.Thumbnails.Large.Url
+                    });
+
+                }
             }
             ListaAgrupada.Add(sudeste);
 
 
             var sul = new Regiao() { LongName = "Sul", ShortName = "S" };
 
-            foreach (var estado in estados.Where(l => l.Fields.Regiao.Contains(EnumRegiao.Sul.ToString())).ToList())
+            foreach (var estado in estados.Where(l => l.Fields.Regiao.Contains("Sul")).ToList())
             {
-                sul.Add(estado.Fields);
+                foreach (var attachment in estado.Fields.Attachments)
+                {
+                    sul.Add(new Fields
+                    {
+                        Capital = estado.Fields.Capital,
+                        Estado = estado.Fields.Estado,
+                        Regiao = estado.Fields.Regiao,
+                        Sigla = estado.Fields.Sigla,
+                        Icon = attachment.Thumbnails.Large.Url
+                    });
+
+                }
             }
             ListaAgrupada.Add(sul);
 
@@ -85,11 +118,21 @@ namespace MOBRJ_XamarinForms.ViewModels
 
             foreach (var estado in estados.Where(l => l.Fields.Regiao.Contains("Centro-Oeste")).ToList())
             {
-                centroOeste.Add(estado.Fields);
+                foreach (var attachment in estado.Fields.Attachments)
+                {
+                    centroOeste.Add(new Fields
+                    {
+                        Capital = estado.Fields.Capital,
+                        Estado = estado.Fields.Estado,
+                        Regiao = estado.Fields.Regiao,
+                        Sigla = estado.Fields.Sigla,
+                        Icon = attachment.Thumbnails.Large.Url
+                    });
+
+                }
             }
             ListaAgrupada.Add(centroOeste);
         }
-
         #endregion
     }
 }

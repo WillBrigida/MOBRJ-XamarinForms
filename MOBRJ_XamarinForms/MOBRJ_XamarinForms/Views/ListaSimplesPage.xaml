@@ -3,67 +3,105 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    NavigationPage.HasNavigationBar="False"
     x:Class="MOBRJ_XamarinForms.Views.ListaSimplesPage"
     x:Name="ListaSimples"
     Title="{Binding Title}">
 
     <ContentPage.Content>
-        <StackLayout>
-          
-            <SearchBar
+        <AbsoluteLayout>
+            <StackLayout>
+
+                <SearchBar
                 Text="{Binding Filtro, Mode=TwoWay}"
                 Placeholder="Buscar Estado ou Cidadde"
                 SearchCommand="{Binding Filtro, Mode=TwoWay}">
-                
-            </SearchBar>
-            
-            <ListView
+
+                </SearchBar>
+
+                <ListView
                 IsRefreshing="{Binding IsBusy}"
                 CachingStrategy="RecycleElement"
                 SeparatorVisibility="Default"
                 HasUnevenRows="True"
                 IsVisible="True"
                 ItemsSource="{Binding ListaEstados}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
 
-                            <StackLayout
+                                <StackLayout
+                                VerticalOptions="CenterAndExpand"
                                 Margin="10">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="60"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="20"/>
-                                    </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
 
-                                    <controls:CircleImage
+                                        <controls:CircleImage
+                                        VerticalOptions="Center"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
                                         HorizontalOptions="Center"
-                                        BorderColor="#65B980"
+                                        BorderColor="#000000"
                                         BorderThickness="1" 
                                         Aspect="AspectFill" 
                                         Source="{Binding Icon}"
-                                        WidthRequest="60"
-                                        HeightRequest="60"/>
+                                        WidthRequest="100"
+                                        HeightRequest="100"/>
 
-                                    
+
                                         <Label
+                                        Margin="20,0"
+                                        FontAttributes="Bold"
                                         Grid.Column="1"
+                                        Grid.Row="0"
                                         Text="{Binding Estado}"
                                         FontSize="Medium"/>
-                                </Grid>
 
-                            </StackLayout>
 
-                                
-                              
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button
-                Text="Lista Agrupada"
-                Command="{Binding ListaAgrupadaCommand}"/>
-        </StackLayout>
+                                        <Label
+                                        FontAttributes="Italic"
+                                        Margin="20,0"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Text="{Binding Capital}"
+                                        FontSize="Medium"/>
+
+
+
+
+                                    </Grid>
+
+                                </StackLayout>
+
+
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
+            </StackLayout>
+            <AbsoluteLayout
+                    Style="{StaticResource absoluteLayoutS}">
+                <Button
+                    Command="{Binding ListaAgrupadaCommand}"
+                    BackgroundColor="#00468B"
+                    WidthRequest="55"
+                    HeightRequest="55"
+                    Text="&#xf061;"
+                        Style="{StaticResource buttonS}"/>
+
+            </AbsoluteLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -4,37 +4,117 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MOBRJ_XamarinForms.Views.ListaDBPage">
     <ContentPage.Content>
-        <StackLayout>
+        <AbsoluteLayout>
+            <StackLayout>
 
-            <!--<SearchBar
-                Text="{Binding Filtro, Mode=TwoWay}"
-                Placeholder="Buscar Estado ou Cidadde"
-                SearchCommand="{Binding Filtro, Mode=TwoWay}">
 
-            </SearchBar>-->
-
-            <ListView
+                <ListView
+                IsRefreshing="{Binding IsBusy}"
                 CachingStrategy="RecycleElement"
                 SeparatorVisibility="Default"
+                    SelectionMode="None"
                 HasUnevenRows="True"
                 IsVisible="True"
                 ItemsSource="{Binding Lista}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label
-                                 Text="{Binding Estado}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
 
-            <Button
-                Command="{Binding CarregarDoBancoLocalCommand}"/>
+                                <StackLayout
+                                VerticalOptions="CenterAndExpand"
+                                Margin="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!--<controls:CircleImage
+                                        VerticalOptions="Center"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        HorizontalOptions="Center"
+                                        BorderColor="#000000"
+                                        BorderThickness="1" 
+                                        Aspect="AspectFill" 
+                                        Source="{Binding Icon}"
+                                        WidthRequest="100"
+                                        HeightRequest="100"/>-->
 
 
-        </StackLayout>
+                                        <Label
+                                        Margin="20,0"
+                                        FontAttributes="Bold"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Text="{Binding Sigla}"
+                                        FontSize="Medium"/>
+
+
+                                        <Label
+                                        FontAttributes="Italic"
+                                        Margin="20,0"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Text="{Binding Estado}"
+                                        FontSize="Medium"/>
+
+                                        <Label
+                                        Margin="20,0"
+                                        FontAttributes="Italic"
+                                        Grid.Column="1"
+                                        Grid.Row="2"
+                                        Text="{Binding Capital}"
+                                        FontSize="Medium"/>
+
+                                        <Label
+                                        Margin="20,0"
+                                        FontAttributes="Italic"
+                                        Grid.Column="1"
+                                        Grid.Row="3"
+                                        Text="{Binding Regiao}"
+                                        FontSize="Medium"/>
+
+
+
+
+                                    </Grid>
+
+                                </StackLayout>
+
+
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
+            </StackLayout>
+
+
+
+            <AbsoluteLayout
+                    Style="{StaticResource absoluteLayoutS}">
+
+                <Button
+                    Command="{Binding CarregarDoBancoLocalCommand}"
+                    BackgroundColor="#00468B"
+                    WidthRequest="55"
+                    HeightRequest="55"
+                    Text="&#xf061;"
+                        Style="{StaticResource buttonS}"/>
+
+            </AbsoluteLayout>
+
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
