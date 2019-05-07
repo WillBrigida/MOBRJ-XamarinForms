@@ -7,7 +7,7 @@ Realm - Banco local,
 
 Prism - Freamework MVVM,
 
-Newtonsoft.Jason - Dessrializar Jason
+Newtonsoft.Jason - Desserializar Jason
 
 ImageCicle - Imagem Circular
 
